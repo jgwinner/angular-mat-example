@@ -1,0 +1,74 @@
+<div class="div-block">
+
+  <form class="form" #formIncident="ngForm" (ngSubmit)="onSaveNoteInfo(formNote)">
+     <label for="title">title: </label>
+    <input name="title" data-name="title" id="title" 
+        class="text-field roundinput w-input"
+        autofocus type="text" maxlength="256" 
+        >
+
+<label for="content">content: </label>
+    <input name="content" data-name="content" id="content" 
+        class="text-field roundinput w-input"
+        autofocus type="text" maxlength="256" 
+        >
+
+<label for="id">id: </label>
+    <input name="id" data-name="id" id="id" 
+        class="text-field roundinput w-input"
+        autofocus type="number" min="0" max="240" step="1" 
+        >
+
+  </form>
+
+</div>
+
+ prepareNoteForm() {
+   const formModel = this.NoteForm.value;
+   const NoteData = {
+ resetForm(NoteForm ?: NgForm): void {
+   this.NoteApi.selectedNote = {
+     title: formModel.title,
+     content: formModel.content,
+     id: formModel.id,
+};
+return NoteData;
+}
+createNoteForm() {
+this.NoteForm = this.fb.group({
+     title: '',
+     content: '',
+     id: 0,
+});
+}
+
+  // for the file src/app/models; interface objects for the API's.
+  // TTD: rebuild these in a different location.
+export interface NoteInterface {
+     title?: string;
+     content?: string;
+     id?: number;
+}
+
+  // for the file src/app/models; interface objects for the API's.
+  // TTD: rebuild these in a different location.
+         <table class="table table-hover">
+         <thead>
+           <tr>
+           <th class="intro-row" scope="col">#</th>
+              <th class="intro-row" scope="col">title </th>
+              <th class="intro-row" scope="col">content </th>
+              <th class="intro-row" scope="col">id </th>
+           </tr>
+         </thead>
+         <tbody>
+         <tr *ngFor="let Note of Notes | paginate: {itemsPerPage: 20, currentPage: pageActual}; index as i">
+              <td scope="row"> {{i+1}}</td>
+              <td>{{Note.title }}</td>
+              <td>{{Note.content }}</td>
+              <td>{{Note.id }}</td>
+              </tr >
+          </tbody >
+        </table >
+  
+  

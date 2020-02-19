@@ -1,0 +1,62 @@
+<!-- JDG: The typical example is to pass the record from the master form to this component.
+  THis would work especially well with internal data sources.
+  However, I didn't go that way to allow deep linking straight to the detail.
+  -->
+
+
+<mat-card>
+  <form [formGroup]="form"
+        class="widget--detail-form">
+
+    <mat-card>#: {{currentId}} {{this.ourTitle }} details:</mat-card>
+    <p>
+      <mat-form-field appearance="outline" class="widget-detail-box">
+        <mat-label for="title">
+          Title:
+        </mat-label>
+        <input matInput formControlName="title"
+               placeholder="Enter the Widget title"
+               value="title" />
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline" class="widget-detail-box">
+        <mat-label for="price">
+          Price:
+        </mat-label>
+        <input matInput formControlName="price"
+               placeholder="Enter the Price"
+               value="price"
+               type="number" />
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline" class="widget-detail-box">
+        <mat-label>Date of expiration:</mat-label>
+        <input matInput [matDatepicker]="datePicker" placeholder="Widget's expiration date"
+               [value]="startDate" formControlName="date">
+        <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+        <mat-datepicker #datePicker [startAt]="startDate"></mat-datepicker>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline" class="widget-detail-box-wide">
+        <mat-label for="description">
+          Description:
+        </mat-label>
+        <textarea  matInput formControlName="description"
+               placeholder="Please enter the Widget description"
+               value="description" ></textarea>
+      </mat-form-field>
+      <!--<quill-editor #editor
+                formControlName="description">
+  </quill-editor>-->
+    </p>
+    <p>
+      <button mat-raised-button (click)="onSaveCurrent()">Save</button>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <button mat-raised-button (click)="onDeleteCurrent()">Delete</button>
+    </p>
+  </form>
+
+</mat-card>

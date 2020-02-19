@@ -1,0 +1,108 @@
+<div class="div-block">
+
+  <form class="form" #formIncident="ngForm" (ngSubmit)="onSaveUserInfo(formUser)">
+     <label for="realm">realm: </label>
+    <input name="realm" data-name="realm" id="realm" 
+        class="text-field roundinput w-input"
+        autofocus type="text" maxlength="256" 
+        >
+
+<label for="username">username: </label>
+    <input name="username" data-name="username" id="username" 
+        class="text-field roundinput w-input"
+        autofocus type="text" maxlength="256" 
+        >
+
+<label for="email">email: </label>
+    <input name="email" data-name="email" id="email" 
+        class="text-field roundinput w-input"
+        autofocus type="text" maxlength="256" 
+        >
+
+<label class="rndswitch">
+  <input name="emailVerified" data-name="emailVerified" id="emailVerified" type="checkbox">
+<span class=rndslider round"></span>"
+        autofocus type="checkbox" 
+>
+<label for="id">id: </label>
+    <input name="id" data-name="id" id="id" 
+        class="text-field roundinput w-input"
+        autofocus type="number" min="0" max="240" step="1" 
+        >
+
+<label for="password">password: </label>
+    <input name="password" data-name="password" id="password" 
+        class="text-field roundinput w-input"
+        autofocus type="text" maxlength="256" 
+        >
+
+  </form>
+
+</div>
+
+ prepareUserForm() {
+   const formModel = this.UserForm.value;
+   const UserData = {
+ resetForm(UserForm ?: NgForm): void {
+   this.UserApi.selectedUser = {
+     realm: formModel.realm,
+     username: formModel.username,
+     email: formModel.email,
+     emailVerified: formModel.emailVerified,
+     id: formModel.id,
+     password: formModel.password,
+};
+return UserData;
+}
+createUserForm() {
+this.UserForm = this.fb.group({
+     realm: '',
+     username: '',
+     email: '',
+     emailVerified: false,
+     emailVerified: new Date('1000-01-01T00:00:00'),
+     id: 0,
+     password: '',
+});
+}
+
+  // for the file src/app/models; interface objects for the API's.
+  // TTD: rebuild these in a different location.
+export interface UserInterface {
+     realm?: string;
+     username?: string;
+     email?: string;
+     emailVerified?: boolean;
+     emailVerified?: Date;
+     id?: number;
+     password?: string;
+}
+
+  // for the file src/app/models; interface objects for the API's.
+  // TTD: rebuild these in a different location.
+         <table class="table table-hover">
+         <thead>
+           <tr>
+           <th class="intro-row" scope="col">#</th>
+              <th class="intro-row" scope="col">realm </th>
+              <th class="intro-row" scope="col">username </th>
+              <th class="intro-row" scope="col">email </th>
+              <th class="intro-row" scope="col">emailVerified </th>
+              <th class="intro-row" scope="col">id </th>
+              <th class="intro-row" scope="col">password </th>
+           </tr>
+         </thead>
+         <tbody>
+         <tr *ngFor="let User of Users | paginate: {itemsPerPage: 20, currentPage: pageActual}; index as i">
+              <td scope="row"> {{i+1}}</td>
+              <td>{{User.realm }}</td>
+              <td>{{User.username }}</td>
+              <td>{{User.email }}</td>
+              <td>{{User.emailVerified  == 1 ? 'Yes' : 'No'}}</td>
+              <td>{{User.id }}</td>
+              <td>{{User.password }}</td>
+              </tr >
+          </tbody >
+        </table >
+  
+  

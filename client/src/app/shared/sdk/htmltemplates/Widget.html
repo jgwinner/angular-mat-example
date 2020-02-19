@@ -1,0 +1,93 @@
+<div class="div-block">
+
+  <form class="form" #formIncident="ngForm" (ngSubmit)="onSaveWidgetInfo(formWidget)">
+     <label for="id">id: </label>
+    <input name="id" data-name="id" id="id" 
+        class="text-field roundinput w-input"
+        autofocus type="number" min="0" max="240" step="1" 
+        >
+
+<label for="title">title: </label>
+    <input name="title" data-name="title" id="title" 
+        class="text-field roundinput w-input"
+        autofocus type="text" maxlength="256" 
+        >
+
+        autofocus [matDatepicker]="myDatepicker" 
+<mat-datepicker #myDatepicker></mat-datepicker>
+;
+<label for="price">price: </label>
+    <input name="price" data-name="price" id="price" 
+        class="text-field roundinput w-input"
+        autofocus type="number" min="0" max="240" step="1" 
+        >
+
+<label for="description">description: </label>
+    <input name="description" data-name="description" id="description" 
+        class="text-field roundinput w-input"
+        autofocus type="text" maxlength="256" 
+        >
+
+  </form>
+
+</div>
+
+ prepareWidgetForm() {
+   const formModel = this.WidgetForm.value;
+   const WidgetData = {
+ resetForm(WidgetForm ?: NgForm): void {
+   this.WidgetApi.selectedWidget = {
+     id: formModel.id,
+     title: formModel.title,
+     date: formModel.date,
+     price: formModel.price,
+     description: formModel.description,
+};
+return WidgetData;
+}
+createWidgetForm() {
+this.WidgetForm = this.fb.group({
+     id: 0,
+     title: '',
+     date: new Date('1000-01-01T00:00:00'),
+     price: 0,
+     description: '',
+});
+}
+
+  // for the file src/app/models; interface objects for the API's.
+  // TTD: rebuild these in a different location.
+export interface WidgetInterface {
+     id?: number;
+     title?: string;
+     date?: Date;
+     price?: number;
+     description?: string;
+}
+
+  // for the file src/app/models; interface objects for the API's.
+  // TTD: rebuild these in a different location.
+         <table class="table table-hover">
+         <thead>
+           <tr>
+           <th class="intro-row" scope="col">#</th>
+              <th class="intro-row" scope="col">id </th>
+              <th class="intro-row" scope="col">title </th>
+              <th class="intro-row" scope="col">date </th>
+              <th class="intro-row" scope="col">price </th>
+              <th class="intro-row" scope="col">description </th>
+           </tr>
+         </thead>
+         <tbody>
+         <tr *ngFor="let Widget of Widgets | paginate: {itemsPerPage: 20, currentPage: pageActual}; index as i">
+              <td scope="row"> {{i+1}}</td>
+              <td>{{Widget.id }}</td>
+              <td>{{Widget.title }}</td>
+              <td>{{Widget.date | date: 'dd MMM yy hh: mm a'}}</td>
+              <td>{{Widget.price }}</td>
+              <td>{{Widget.description }}</td>
+              </tr >
+          </tbody >
+        </table >
+  
+  

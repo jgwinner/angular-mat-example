@@ -1,0 +1,39 @@
+{
+  "name": "Widget",
+  "plural": "Widgets",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "forceId": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "Title"
+    },
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "price": {
+      "type": "number",
+      "required": true,
+      "default": 1
+    },
+    "description": {
+      "type": "string",
+      "required": true,
+      "default": "Description"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
